@@ -1,0 +1,77 @@
+﻿@model Student;
+@{
+	ViewData["Title"] = "Student Index";
+}
+
+<h1 class="bg-info text-white">Add New Student</h1>
+<hr />
+<div class="row">
+	<div class="col-sm-8">
+		<form asp-action="Create" asp-controller="Student" method="post">
+			<div class="form-group">
+				<label asp-for="@Model.StudentID" class="form-control">Student ID: </label>
+				<input asp-for="@Model.StudentID" class="form-control" />
+			</div>
+
+			<div class="form-group">
+				<label asp-for="@Model.FirstName" class="form-control">First Name: </label>
+				<input asp-for="@Model.FirstName" class="form-control" />
+			</div>
+
+			<div class="form-group">
+				<label asp-for="@Model.LastName" class="form-control">Last Name: </label>
+				<input asp-for="@Model.LastName" class="form-control" />
+			</div>
+
+			<div class="form-group">
+				<label asp-for="@Model.StudentNumber" class="form-control">Student Number: </label>
+				<input asp-for="@Model.StudentNumber" class="form-control" />
+			</div>
+
+			<div class="form-group">
+				<label asp-for="@Model.Address" class="form-control">Address: </label>
+				<input asp-for="@Model.Address" class="form-control" />
+			</div>
+
+			<div class="form-group">
+				<label asp-for="@Model.Gender" class="form-control">Gender: </label>
+				<input asp-for="@Model.Gender" class="form-control" />
+			</div>
+
+			<!-- Student ve Gender list olduğu için combobox tarzı form elementleri olmalı -->
+			<div class="form-group">
+				<label asp-for="@Model.Gender.GenderID">Gender: </label>
+				<select class="form-control">
+					<option>Select</option>
+					@{
+						// unboxing for looping
+						List<Gender> genderList = (List<Gender>)ViewData["Gender"];
+					}
+					@foreach (Gender item in genderList)
+					{
+						<option value="@item.GenderID">@item.GenderName</option>
+					}
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="@Model.Country.CountryID">Country: </label>
+				<select class="form-control">
+					<option>Select</option>
+					@{
+						// unboxing for looping
+						List<Country> countryList = (List<Country>)ViewData["Country"];
+					}
+					@foreach (Country item in countryList)
+					{
+						<option value="@item.CountryID">@item.CountryName</option>
+					}
+				</select>
+			</div>
+
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary">Save</button>
+			</div>
+		</form>
+	</div>
+</div>

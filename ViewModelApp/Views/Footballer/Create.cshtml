@@ -1,0 +1,61 @@
+﻿@using ViewModelApp.Models.ViewModel;
+@model FootballerAddVM;
+@{
+	ViewData["Title"] = "Add New Footballer";
+}
+
+<h1 class="bg-info text-dark">Add New Footballer</h1>
+<hr />
+<div class="row">
+	<div class="col-sm-8">
+		<form asp-action="Create" asp-controller="Footballer" method="post">
+			<div asp-validation-summary="All" class="text-danger"></div> <!--Hatalar burda görünecek-->
+
+			<div class="form-group mb-4">
+				<label asp-for="@Model.Footballer.FootballerID" class="mb-2" >FootballerID</label>
+				<input asp-for="@Model.Footballer.FootballerID" class="form-control" />
+				<span asp-validation-for="@Model.Footballer.FootballerID" class="text-danger" ></span>
+			</div>
+
+			<div class="form-group mb-4">
+				<label asp-for="@Model.Footballer.FullName" class="mb-2" >Footballer Name</label>
+				<input asp-for="@Model.Footballer.FullName" class="form-control" />
+				<span asp-validation-for="@Model.Footballer.FullName" class="text-danger"></span>
+			</div>
+
+			<div class="form-group mb-4">
+				<label asp-for="@Model.Footballer.Age" class="mb-2">Footballer Age</label>
+				<input asp-for="@Model.Footballer.Age" class="form-control" />
+				<span asp-validation-for="@Model.Footballer.Age" class="text-danger"></span>
+			</div>
+
+			<div class="form-group mb-4">
+				<label asp-for="@Model.Footballer.PositionID" class="mb-2">Position</label>
+				<select asp-for="@Model.Footballer.PositionID">
+					<option>Select position</option>
+					@foreach (Position item in Model.Positions)
+					{
+						<option value="@item.PositionID">@item.PositionName</option>
+					}
+				</select>
+				<span asp-validation-for="@Model.Footballer.PositionID" class="text-danger"></span>
+			</div>
+
+			<div class="form-group mb-4">
+				<label asp-for="@Model.Footballer.TeamID" class="mb-2">Team</label>
+				<select asp-for="@Model.Footballer.TeamID">
+					<option>Select team</option>
+					@foreach (Team item in Model.Teams)
+					{
+						<option value="@item.TeamID">@item.TeamName</option>
+					}
+				</select>
+				<span asp-validation-for="@Model.Footballer.TeamID" class="text-danger"></span>
+			</div>
+
+			<div class="form-group mb-4">
+				<input type="submit" value="Add New Footballer" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+</div>

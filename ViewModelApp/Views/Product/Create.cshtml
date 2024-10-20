@@ -1,0 +1,104 @@
+﻿@using ViewModelApp.Models.ViewModel;
+@model ProductAddVM;
+@{
+	ViewData["Title"] = "Add New Product";
+}
+
+<h1 class="bg-info text-dark">Add New Product</h1>
+<hr />
+<div class="row">
+	<div class="col-sm-8">
+		<form asp-action="Create" asp-controller="Product" method="post">
+			<div asp-validation-summary="All" class="text-danger"></div> <!--Hatalar burda görünecek-->
+
+			<div class="form-group mb-4">
+				<label asp-for="@Model.Product.ProductID" class="mb-2">Product ID</label>
+				<input asp-for="@Model.Product.ProductID" class="form-control" />
+				<span asp-validation-for="@Model.Product.ProductID" class="text-danger"></span>
+			</div>
+
+			<div class="form-group mb-4">
+				<label asp-for="@Model.Product.ProductName" class="mb-2">Product Name</label>
+				<input asp-for="@Model.Product.ProductName" class="form-control" />
+				<span asp-validation-for="@Model.Product.ProductName" class="text-danger"></span>
+			</div>
+
+			<div class="form-group mb-4">
+				<label asp-for="@Model.Product.SupplierID" class="mb-2">Supplier</label>
+				<select asp-for="@Model.Product.SupplierID">
+					<option>Select supplier</option>
+					@foreach (Supplier item in Model.Suppliers)
+					{
+						<option value="@item.SupplierID">@item.CompanyName</option>
+					}
+				</select>
+				<span asp-validation-for="@Model.Product.SupplierID" class="text-danger"></span>
+			</div>
+
+			<div class="form-group mb-4">
+				<label asp-for="@Model.Product.CategoryID" class="mb-2">Category</label>
+				<select asp-for="@Model.Product.CategoryID">
+					<option>Select category</option>
+					@foreach (Category item in Model.Categories)
+					{
+						<option value="@item.CategoryID">@item.CategoryName</option>
+					}
+				</select>
+				<span asp-validation-for="@Model.Product.CategoryID" class="text-danger"></span>
+			</div>
+
+			<div class="form-group mb-4">
+				<label asp-for="@Model.Product.QuantityPerUnit" class="mb-2">Quantity Per Unit</label>
+				<input asp-for="@Model.Product.QuantityPerUnit" class="form-control" />
+				<span asp-validation-for="@Model.Product.QuantityPerUnit" class="text-danger"></span>
+			</div>
+
+			<div class="form-group mb-4">
+				<label asp-for="@Model.Product.ProductName" class="mb-2">Product Name</label>
+				<input asp-for="@Model.Product.ProductName" class="form-control" />
+				<span asp-validation-for="@Model.Product.ProductName" class="text-danger"></span>
+			</div>
+
+			<div class="form-group mb-4">
+				<label asp-for="@Model.Product.UnitPrice" class="mb-2">Unit Price</label>
+				<input asp-for="@Model.Product.UnitPrice" class="form-control" />
+				<span asp-validation-for="@Model.Product.UnitPrice" class="text-danger"></span>
+			</div>
+
+			<div class="form-group mb-4">
+				<label asp-for="@Model.Product.UnitsInStock" class="mb-2">Units In Stock</label>
+				<input asp-for="@Model.Product.UnitsInStock" class="form-control" />
+				<span asp-validation-for="@Model.Product.UnitsInStock" class="text-danger"></span>
+			</div>
+
+			<div class="form-group mb-4">
+				<label asp-for="@Model.Product.UnitsOnOrder" class="mb-2">Units On Order</label>
+				<input asp-for="@Model.Product.UnitsOnOrder" class="form-control" />
+				<span asp-validation-for="@Model.Product.UnitsOnOrder" class="text-danger"></span>
+			</div>
+
+			<div class="form-group mb-4">
+				<label asp-for="@Model.Product.ReorderLevel" class="mb-2">Reorder Level</label>
+				<input asp-for="@Model.Product.ReorderLevel" class="form-control" />
+				<span asp-validation-for="@Model.Product.ReorderLevel" class="text-danger"></span>
+			</div>
+
+			<div class="form-group mb-4">
+				<label asp-for="@Model.Product.Discounted" class="mb-2">Discounted</label>
+				<div class="form-group mb-4">
+					<input id="discountYes" type="radio" asp-for="@Model.Product.Discounted" class="form-check-input" value="true" />
+					<label for="discountYes" asp-for="@Model.Product.Discounted" class="mb-2">Yes</label>
+				</div>
+
+				<div class="form-group mb-4">
+					<input id="discountNo" type="radio" asp-for="@Model.Product.Discounted" class="form-check-input" value="false" />
+					<label for="discountNo" asp-for="@Model.Product.Discounted" class="mb-2">No</label>
+				</div>
+			</div>
+
+			<div class="form-group mb-4">
+				<input type="submit" value="Add New Product" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+</div>
